@@ -30,7 +30,12 @@ public struct MaskedTextField: UIViewRepresentable {
      Value completeness binding.
      */
     @Binding public var complete: Bool
-    
+
+    /**
+     Tail placeholder binding.
+     */
+    @Binding public var tailPlaceholder: String
+
     // - MARK: UITextField properties
     
     /**
@@ -233,6 +238,7 @@ public struct MaskedTextField: UIViewRepresentable {
         text: Binding<String>,
         value: Binding<String>,
         complete: Binding<Bool>,
+        tailPlaceholder: Binding<String>,
         placeholder: String,
         primaryMaskFormat: String = "",
         autocomplete: Bool = true,
@@ -247,6 +253,7 @@ public struct MaskedTextField: UIViewRepresentable {
         self._text = text
         self._value = value
         self._complete = complete
+        self._tailPlaceholder = tailPlaceholder
         self.placeholder = placeholder
         self.primaryMaskFormat = primaryMaskFormat
         self.autocomplete = autocomplete
@@ -291,6 +298,7 @@ public struct MaskedTextField: UIViewRepresentable {
                 self.text = input.allText
                 self.value = value
                 self.complete = complete
+                self.tailPlaceholder = tailPlaceholder
             },
             allowSuggestions: allowSuggestions,
             onSubmit: onSubmit,
